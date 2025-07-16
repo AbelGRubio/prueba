@@ -1,0 +1,74 @@
+---
+// src/layouts/Layout.astro
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import "../styles/global.css"
+// Obtenemos la ruta actual y verificamos si es la página de inicio
+const currentPath = Astro.url.pathname;
+const isHomePage = currentPath === '/';
+const pageTitle = "Full Stack Developer | React & Python Optimization Expert";
+const pageDescription = "I'm agrubio, a full stack developer focused on code optimization, refactoring, and building scalable applications using Python and React. Check out my portfolio and recent work.";
+// Resto de tus variables
+const keywords = "full stack developer, Python developer, React developer, code optimization, refactoring expert, performance engineering, web development, software development, software engineer, agrubio portfolio"; 
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<!-- <meta name="generator" content={Astro.generator} /> -->
+		
+
+		<link rel="canonical" href="https://agrubio.dev" />
+
+        <!-- <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "dd291c700634478e8e9835384fbf1a89"}'></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-43TSMZE2VS"></script>
+		<script id="google-analytics">
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'G-43TSMZE2VS');
+		</script> -->
+
+	<title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <meta name="keywords" content={keywords}/>
+    
+    {/* OpenGraph / Facebook */}
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://agrubio.dev" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:image" content="https://agrubio.dev/images/tenweb_media_rczvprsdi.webp" />
+
+    {/* Twitter */}
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://agrubio.dev" />
+    <meta property="twitter:title" content={pageTitle} />
+    <meta property="twitter:description" content={pageDescription} />
+    <meta property="twitter:image" content="https://agrubio.dev/images/tenweb_media_rczvprsdi.webp" />
+	
+	<meta name="author" content="agrubio" />
+	<meta name="publisher" content="agrubio.dev" />
+	<meta name="robots" content="index, follow">
+
+	</head>
+	<body>
+		<Header currentPath={currentPath} isHomePage={isHomePage} />
+
+		<slot />
+
+		<Footer></Footer>
+	</body>
+</html>
+
+<style>
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style>

@@ -1,0 +1,132 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import PortfolioContent from '../components/PortfolioContent.astro';
+import MeetDeveloper from '../components/MeetDeveloper.astro';
+import BlogContent from '../components/BlogContent.astro';
+import ContactSection from '../components/ContactSection.astro';
+import TechStack from '../components/TechStack.astro';
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+
+ const project = {
+  image: "/images/tenweb_media_swuqor0ij.webp",
+  altText: "Project Showcase",
+  title: "Showcasing My Projects",
+  description:
+    "Explore my past projects that highlight my expertise in Python, React, and software optimization, demonstrating real-world impacts.",
+  tags: [
+    "Enhanced performance and scalability",
+    "Implemented innovative solutions",
+    "Achieved measurable results",
+  ],
+  details: [
+    { title: "Software", value: "Optimization" },
+    { title: "API", value: "Development" },
+    { title: "Real-time", value: "Processing" },
+    { title: "Impact", value: "Results" },
+  ],
+}; 
+
+
+---
+
+<Layout>
+
+<HeroSection
+  backgroundImage="/images/tenweb_media_rczvprsdi.webp"
+  title="Abel Garcia"
+  subtitle="As a senior full-stack developer, I specialize in optimizing code for performance and scalability. My expertise lies in Python, React, and software architecture, ensuring robust and efficient solutions."
+  buttons={[
+    { text: "View Portfolio", href: "/portfolio" },
+    { text: "Contact Me", href: "#section-touch", primary: true },
+  ]}
+  enableZoom={true}
+/>
+
+<MeetDeveloper/>
+
+
+<TechStack/>
+
+<!-- <PortfolioContent/> -->
+
+<BlogContent/>
+<!-- 
+<section class="bg-white px-6 md:px-12 max-w-6xl mx-auto">
+  <div class="p-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-[300px]">
+      <h1 class="text-4xl font-bold text-left">
+        My Technical Expertise Powers Your Project's Success
+      </h1>
+      <p class="text-gray-600">
+        I leverage my deep technical expertise in Python, React, and software optimization to deliver exceptional results.
+        Our commitment to clean code, efficient architecture, and continuous improvement ensures that your project is built on a solid foundation.
+      </p>
+    </div>
+  </div>
+
+  <div class="grid md:grid-cols-3 gap-8 mt-12 mb-12">
+    <div class="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col h-full">
+      <div class="w-full h-52 bg-cover bg-center" style="background-image: url('/images/tenweb_media_rtcqbht1j.webp');"></div>
+      <div class="p-6 flex flex-col flex-grow">
+        <h1 class="text-xl font-bold text-gray-900">Python Proficiency</h1>
+        <p class="text-gray-600 mt-2 text-sm flex-grow">
+          Our expertise in Python allows us to build robust and scalable backend systems using frameworks like Django and Flask.
+        </p>
+        <div class="mt-auto pt-4">
+          <a href="/services/python-proficiency" class="btn-normal-pp btn-blue-400">Learn More</a>
+        </div>
+      </div>
+    </div>
+    <div class="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col h-full">
+      <div class="w-full h-52 bg-cover bg-center" style="background-image: url('/images/tenweb_media_rine15hqp.webp');"></div>
+      <div class="p-6 flex flex-col flex-grow">
+        <h3 class="text-xl font-bold text-gray-900">React Development</h3>
+        <p class="text-gray-600 mt-2 text-sm flex-grow">
+          With React, I create engaging and responsive user interfaces that provide a seamless user experience.
+        </p>
+        <div class="mt-auto pt-4">
+          <a href="/services/react-development" class="btn-normal-pp btn-blue-400">Learn More</a>
+        </div>
+      </div>
+    </div>
+    <div class="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col h-full">
+      <div class="w-full h-52 bg-cover bg-center" style="background-image: url('/images/tenweb_media_r39302ibv.webp');"></div>
+      <div class="p-6 flex flex-col flex-grow">
+        <h3 class="text-xl font-bold text-gray-900">Software Optimization</h3>
+        <p class="text-gray-600 mt-2 text-sm flex-grow">
+          I optimize your software for peak performance, ensuring it runs efficiently and reliably.
+        </p>
+        <div class="mt-auto pt-4">
+          <a href="/services/optimice" class="btn-normal-pp btn-blue-400">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<section class="max-w-6xl mx-auto" id="section-touch">
+  <div class="container mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div>
+        <h2 class="text-4xl font-bold">Get in Touch</h2>
+        <p class="text-gray-600 mt-2">Reach out for inquiries or collaborations.</p>
+        <div class="mt-6 space-y-4">
+          <div class="flex items-center space-x-3">
+            <span class="text-gray-600">📧</span>
+            <span class="text-gray-700">contact@agrubio.dev</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <span class="text-gray-600">📍</span>
+            <span class="text-gray-700">Innsbruck</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <ContactSection isMain={true} />
+      </div>
+    </div>
+  </div>
+</section>
+</Layout>
