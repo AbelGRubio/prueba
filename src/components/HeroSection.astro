@@ -1,0 +1,90 @@
+---
+// HeroSection.astro
+import type HeroSectionProps from "../interfaces/hero.interface";
+
+const {
+  backgroundImage = '',
+  title = '',
+  subtitle = '',
+  buttons = [],
+  enableZoom = false,
+} = Astro.props;
+---
+
+<section class="relative h-screen flex items-center justify-center text-center overflow-hidden">
+  <!-- Imagen de fondo con zoom -->
+  <div
+    class="absolute inset-0 z-0 w-full h-full transition-transform duration-300 will-change-transform"
+    id="background-container"
+  >
+    <img
+      src={backgroundImage}
+      alt="Background"
+      class="w-full h-full object-cover"
+      style="object-fit: cover;"
+      loading="lazy"
+    />
+  </div>
+
+  <!-- Superposición oscura -->
+  <div class="absolute inset-0"></div>
+
+  <!-- Contenido -->
+  <div class="relative z-10 max-w-3xl px-6 text-white">
+    <h1 class="text-6xl font-bold text-left">
+      {title}
+    
+    </h1>
+    <div
+      class="max-w-3xl mt-4 text-lg text-left opacity-0 translate-y-8 transition duration-700"
+      id="heroSubtitle"
+    >
+      {subtitle}
+    </div>
+
+    {buttons.length > 0 && (
+      <div class="mt-6 flex justify-center space-x-4">
+        {buttons.map((btn: any) => (
+          <a
+            href={btn.href}
+            title={btn.text}
+            class={`px-6 py-2 rounded transition ${
+              btn.primary
+                ? "bg-white text-black hover:opacity-80"
+                : "border border-white/10 text-white hover:bg-white hover:text-black"
+            }`}
+          >
+            {btn.text}
+          </a>
+        ))}
+      </div>
+    )}
+  </div>
+</section>
+
+{enableZoom && (
+  <script>
+    const imageRef = document.getElementById("heroImage");
+    window.addEventListener("scroll", () => {
+      const scrollTop = window.scrollY;
+      const maxScroll = window.innerHeight;
+      const scaleFactor = Math.min(1 + (scrollTop / maxScroll) * 0.2, 1.5);
+      if (imageRef){
+        imageRef.style.transform = `scale(${scaleFactor})`;
+      }
+    });
+  </script>
+)}
+
+<script>
+  // Fade-in para el subtítulo
+  const subtitle = document.getElementById("heroSubtitle");
+  const observer = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      subtitle?.classList.remove("opacity-0", "translate-y-8");
+    }
+  }, { threshold: 0.1 });
+  if (subtitle){
+    observer.observe(subtitle);
+  }
+</script>

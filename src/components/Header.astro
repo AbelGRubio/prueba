@@ -1,0 +1,111 @@
+---
+// src/components/Header.astro
+import MenuIcon from './icons/MenuIcon.astro';
+import CloseIcon from './icons/CloseIcon.astro';
+import { menuItems } from '../data/menuItems'; // Puedes mover esto a un archivo de datos
+
+// Props para recibir la ruta actual y si es la página de inicio
+// const { currentPath, isHomePage } = Astro.props;
+
+// Estado inicial para el menú móvil
+let isOpen = false;
+
+const currentPath = Astro.url.pathname;
+const isHomePage = currentPath === '/';
+---
+
+<header
+  class={`fixed top-4 left-1/2 -translate-x-1/2 w-[90%] lg:w-[80%] z-50 transition-all duration-300 rounded-2xl `}
+>
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div  class="flex-1">
+        <span class={`text-black font-bold text-2xl`}>
+            <a href='/' title="Main page">Abel Garcia </a>
+          
+        </span>
+    </div>
+
+    <!-- Menú para Desktop -->
+    <nav class="hidden lg:flex space-x-6">
+      {menuItems.map((item) => (
+        <a 
+          href={item.href} 
+          class="hover:text-gray-300"
+          title={item.name}
+          class:list={[currentPath === item.href ? 'font-semibold' : '']}
+        >
+          {item.name}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Botón del menú móvil -->
+    <button
+      onclick="toggleMenu()"
+      class="lg:hidden text-2xl"
+      aria-label="Toggle menu"
+    >
+      {isOpen ? <CloseIcon /> : <MenuIcon />}
+    </button>
+  </div>
+
+  <!-- Menú móvil -->
+  <div 
+    id="mobile-menu"
+    class={`hidden lg:hidden absolute top-full left-0 w-full shadow-lg rounded-2xl py-4 flex-col items-center space-y-4 
+    `}
+    >
+    <nav class="flex flex-col space-y-4 text-center">
+      {menuItems.map((item) => (
+        <a 
+          href={item.href} 
+          title={item.name}
+          onclick="toggleMenu()"
+          class="hover:text-gray-300 py-2"
+          class:list={[currentPath === item.href ? 'font-semibold' : '']}
+        >
+          {item.name}
+        </a>
+      ))}
+    </nav>
+    <!-- <div class="flex flex-col items-center mt-4 space-y-2 w-full">
+      <a href='/services' class={`${isHomePage ? 'btn-h-w' : 'btn-normal-pp btn-blue-400'} w-2/4 flex flex-col items-center`} 
+      onclick="toggleMenu()">
+        Get Started
+      </a>
+      <a href='/contact' class={`${isHomePage ? 'btn-h-w2' : 'btn-normal-pp btn-blue-400-reverse'} w-2/4 flex flex-col items-center`} 
+      onclick="toggleMenu()">
+        Contact Me
+      </a>
+    </div> -->
+  </div>
+</header>
+
+<script is:inline>
+  let isOpen = false;
+  
+  function toggleMenu() {
+    isOpen = !isOpen;
+    const path = window.location.pathname;
+    const isHomePage = path === '/';
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenu.classList.toggle('hidden');
+    mobileMenu.classList.toggle('flex');
+    mobileMenu.classList.toggle('bg-white', true);
+  }
+
+  // Manejo del scroll
+  let isScrolled = false;
+  
+  window.addEventListener('scroll', () => {
+    isScrolled = window.scrollY > 50;
+    const header = document.querySelector('header');
+    header.classList.toggle('scrolled', isScrolled);
+    header.classList.toggle('shadow-2xl', isScrolled);
+    const path = window.location.pathname;
+    const isHomePage = path === '/';
+    console.log("currenpath", path, isHomePage);
+    console.log("entra other page header");
+    header.classList.toggle('bg-white', isScrolled);
+  });
+</script>
