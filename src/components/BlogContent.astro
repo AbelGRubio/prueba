@@ -1,0 +1,35 @@
+---
+import ArticleSection from "./ArticleSection.astro";
+const articles = [
+  {
+    date: "Mar 16, 2025",
+    datetime: "2020-03-16",
+    category: {
+      name: "Marketing",
+      href: "#"
+    },
+    title: "Boost your Python processing pipeline",
+    href: "#",
+    description: "Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.",
+
+  },
+//   {
+//     date: "Abr 2, 2020",
+//     datetime: "2020-04-02",
+//     category: {
+//       name: "Tecnología",
+//       href: "#"
+//     },
+//     title: "Mejora tu productividad con estas herramientas",
+//     href: "#",
+//     description: "Descubre las mejores herramientas para aumentar tu productividad en el trabajo remoto.",
+
+//   },
+  ];
+---
+
+<ArticleSection 
+title="From the blog" 
+subtitle="Learn how to grow your business"
+articles={articles} 
+/>

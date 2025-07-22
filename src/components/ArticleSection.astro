@@ -1,0 +1,46 @@
+---
+// src/components/ArticlesSection.astro
+import ArticleCard from "./ArticleCard.astro";
+
+interface Article {
+  date: string;
+  datetime: string;
+  category: {
+    name: string;
+    href: string;
+  };
+  title: string;
+  href: string;
+  description: string;
+  author?: {
+    name: string;
+    role: string;
+    href: string;
+    imageUrl: string;
+  };
+}
+
+interface Props {
+  articles: Article[];
+  title: string;
+  subtitle: string;
+}
+
+const { articles, title, subtitle } = Astro.props;
+---
+
+<section class="py-12 max-w-6xl mx-auto">
+  <div class="bg-white ">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl lg:mx-0">
+        <h2 class="text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">{title}</h2>
+        <p class="mt-2 text-lg/8 text-gray-600">{subtitle}</p>
+      </div>
+      <div class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        {articles.map((article) => (
+          <ArticleCard article={article} />
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
