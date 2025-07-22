@@ -1,0 +1,85 @@
+---
+// src/components/FeatureSection.astro
+import FeatureCard from './FeatureCard.astro';
+interface FeatureItem {
+  icon: string; // Ahora usamos strings para íconos (emoji o clases CSS)
+  title: string;
+  content: string;
+}
+
+interface Props {
+  data: {
+    title: string;
+    description: string;
+    features: FeatureItem[];
+  };
+}
+
+const { data } = Astro.props;
+---
+
+<section class="text-center py-16 px-6 bg-white">
+  <div class="mx-auto max-w-xl">
+    <!-- Título con animación -->
+    <div 
+      id="section-title"
+      class="opacity-0 animate-fade-in-up"
+      style="animation-delay: 100ms"
+    >
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">
+        {data.title}
+      </h1>
+    </div>
+
+    <!-- Descripción con animación -->
+    <div 
+      id="section-description"
+      class="text-xl text-gray-600 max-w-3xl mx-auto opacity-0 animate-fade-in-up"
+      style="animation-delay: 300ms"
+    >
+      {data.description}
+    </div>
+  </div>
+
+  <!-- Tarjetas de características -->
+  <div class="grid md:grid-cols-3 gap-8 mt-12 mx-auto max-w-5xl">
+    {data.features.slice(0, 3).map((feature, index) => (
+      <FeatureCard 
+        index={index}
+        icon={feature.icon} 
+        title={feature.title}
+        content={feature.content}
+      />
+    ))}
+  </div>
+
+  <!-- Tarjeta adicional centrada si es necesario -->
+  {data.features.length % 3 === 1 && (
+    <div class="col-span-1 flex justify-center mt-8 md:max-w-[350px] mx-auto">
+      <FeatureCard 
+        index={data.features.length - 1}
+        icon={data.features[data.features.length - 1].icon}
+        title={data.features[data.features.length - 1].title}
+        content={data.features[data.features.length - 1].content}
+      />
+    </div>
+  )}
+</section>
+
+<style is:global>
+  /* Animaciones CSS puras */
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out forwards;
+  }
+</style>
