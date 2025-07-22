@@ -1,0 +1,30 @@
+---
+// src/pages/software-journey.astro
+import FeatureSection from "./FeatureSection.astro";
+
+const softwareJourneyData = {
+  title: 'My Journey in Software Development',
+  description: 'With over 8 years of experience, I excel in full-stack development and software architecture, focusing on optimization and performance.',
+  features: [
+    {
+      icon: '💻', // Reemplazo para MdDeveloperMode
+      title: 'Full-Stack Expertise',
+      content: 'I have a strong background in both frontend and backend technologies, including Python and React. My work emphasizes clean code and efficient algorithms to enhance application performance.'
+    },
+    {
+      icon: '🧠', // Reemplazo para FaBrain
+      title: 'Analytical Skills',
+      content: 'My foundation in physics and mathematics allows me to approach problems with a unique analytical perspective, optimizing algorithms and processing data effectively.'
+    },
+    {
+      icon: '🏆', // Reemplazo para FaTrophy
+      title: 'Key Achievements',
+      content: 'Throughout my career, I have successfully led numerous projects, implementing innovative solutions that significantly improved system performance and user experience.'
+    }
+  ]
+};
+---
+
+<div class="pt-25">
+  <FeatureSection data={softwareJourneyData} />
+</div>
